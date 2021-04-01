@@ -1,0 +1,60 @@
+ <div class="container">
+     <div class="maindiv">
+         <h2>Filters</h2>
+        <section class="filterbox">
+            <h3 class="filtercaption">Launch Year</h3>
+            <div class="filtervalue" >
+                <div *ngFor="let year of years">
+                    <button (click)="Yearfilter($event, year)" [ngClass]="{active: isActive(year)}" class="filtersubvalue"> <span>{{year}}</span></button>
+                </div>
+            </div>
+        </section>
+        <section class="filterbox">
+            <h3 class="filtercaption">Successful Launch</h3>
+            <div class="filtervalue" >
+                    <div *ngFor="let value of booleandata;">
+                        <button (click)="launchfilter($event, value)" class="filtersubvalue">{{value}}</button>
+                    </div>
+            </div>
+           
+        </section>
+        <section class="filterbox">
+            <h3 class="filtercaption">Successful Landing</h3>
+            <div class="filtervalue" >
+                <div *ngFor="let value of booleandata;">
+                    <button (click)="landfilter($event, value)" class="filtersubvalue">{{value}}</button>
+                </div>
+            </div>
+        </section>
+     </div>
+
+     <div  *ngIf="onload" class="space_list">
+      <div class="launch_space"  *ngFor="let image of temparray;  let i = index" >
+        <div class="imgbox">
+            <div >
+                <img src='{{image.img}}'style="width:100px;height:100px;"/>
+            </div>
+        </div>
+       <p class="launch-name">{{image.name}} #{{i+1}}</p> 
+       <p class="mission-text">Mission Ids: <span class="missionid">{{image.mission_id}}</span> </p>
+       <p class="launchyear-text">Launch Year: <span class="valuetext">{{image.launch_year}}</span></p>
+       <p class="launchyear-text">Successful Launch: <span class="valuetext">{{image.successful_launch}}</span></p>
+      </div>
+     </div>
+     
+
+     <div  *ngIf="onyearfilter" class="space_list">
+        <div class="launch_space"  *ngFor="let image of filterarray;  let i = index" >
+          <div class="imgbox">
+              <div >
+                  <img src='{{image.img}}'style="width:100px;height:100px;"/>
+              </div>
+            </div>
+         <p class="launch-name">{{image.name}} #{{i+1}}</p> 
+         <p class="mission-text">Mission Ids: {{image.mission_id}}</p>
+         <p class="launchyear-text">Launch Year: <span class="valuetext">{{image.launch_year}}</span></p>
+         <p class="launchyear-text">Successful Launch: <span class="valuetext">{{image.successful_launch}}</span></p>
+        </div>
+       </div>
+   
+  </div>
